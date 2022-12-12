@@ -1,0 +1,203 @@
+body {
+  background-color: rgba(97, 235, 199, 0.666209);
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.displayNone {
+  display: none;
+}
+.activePlayer {
+  background-color: #00ccff19;
+}
+
+.game-word {
+  position: relative;
+  background-color: white;
+  padding: 30px;
+  margin: 50px auto auto auto;
+  width: 800px;
+  height: 500px;
+  box-shadow: -1px 1px 19px rgba(0, 0, 0, 0.12);
+  border: 8px solid #00ccffa0;
+  font-size: 18px;
+  color: rgb(41, 41, 41);
+}
+
+.players {
+  display: flex;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #00ccff4a;
+}
+.players > div {
+  width: 50%;
+  display: flex;
+  font-size: 24px;
+  font-weight: 900;
+  justify-content: center;
+  padding: 20px;
+}
+.questionText {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.inputAnswer {
+  margin: 12px 0;
+  background: #ffffff;
+  border: 2px solid #65cada;
+  padding: 10px;
+  color: #6a6a6a;
+  font-size: 20px;
+}
+.inputAnswer:hover {
+  border: 2px solid #1fdefb;
+}
+.inputAnswerButton {
+  margin: 12px 0;
+  border: 2px solid #65cada;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.inputAnswerButton:hover {
+  background: #32e9fd85;
+  border: 2px solid #1fdefb;
+}
+
+.tipsButton {
+  margin-left: 50px;
+  border: 2px solid #1b45ee7a;
+  background: white;
+}
+
+.tipsButton:hover {
+  background: #2a9fca37;
+}
+
+.passButton {
+  margin-left: 10px;
+  border: 2px solid #6677ba7a;
+  background: white;
+}
+.passButton:hover {
+  background: #6677ba5e;
+  border: 2px solid #6677babf;
+}
+
+#outputTips {
+  margin-top: 20px;
+}
+
+/* dsf */
+.form_radio_btn {
+  display: inline-block;
+  margin: 10px 10px 20px 0;
+}
+.form_radio_btn input[type="radio"] {
+  display: none;
+}
+.form_radio_btn label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 15px;
+  line-height: 34px;
+  border: 1px solid rgba(70, 233, 255, 0.452);
+  user-select: none;
+  font-size: 20px;
+}
+
+/* Checked */
+.form_radio_btn input[type="radio"]:checked + label {
+  background: #32e9fd85;
+}
+
+/* Hover */
+.form_radio_btn label:hover {
+  color: #666;
+}
+
+/* Disabled */
+.form_radio_btn input[type="radio"]:disabled + label {
+  background: #32e9fd85;
+  color: #666;
+}
+
+#notifBlock {
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  margin-bottom: 25px;
+}
+#timeBlock {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
+  margin-bottom: 25px;
+}
+
+.notification-window {
+  background: rgba(172, 255, 47, 0.64);
+  padding: 6px;
+}
+.notification-window-pass {
+  background: rgba(248, 233, 95, 0.611);
+  padding: 6px;
+}
+.notification-wrong {
+  background: rgba(248, 113, 95, 0.611);
+  padding: 6px;
+}
+.start-area {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #31ffe4;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.start-area input {
+  border: 3px solid #9397ef;
+  background-color: rgb(215, 255, 95);
+  height: 60px;
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(50, 50, 50);
+}
+
+.inputName {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #b3e6df;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputName span {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 24px;
+  color: #333;
+}
+.inputName label {
+  font-size: 20px;
+}
+.inputName input {
+  margin-left: 15px;
+  border: 2px solid #1ffff476;
+  padding: 8px 10px;
+}
+
+.inputName .inputAnswerButton {
+  margin-left: 0;
+  padding: 10px;
+}

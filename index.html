@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>G-Word</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-word">
+      <div class="players">
+        <div id="activePlayerOne" class="activePlayer">
+          <span id="playerOneName"></span>:&nbsp;
+          <span id="playerOneScore">0</span>
+        </div>
+        <div id="activePlayerTwo">
+          <span id="playerTwoName"></span>:&nbsp;
+          <span id="playerTwoScore">0</span>
+        </div>
+      </div>
+      <span id="question" class="questionText">The capital of Italy?</span>
+      <form id="outputQuestion">
+        <input type="text" class="inputAnswer" id="answerInput" />
+        <input
+          type="button"
+          id="answerButton"
+          value="Відповісти"
+          class="inputAnswerButton"
+        />
+                        <input
+          type="button"
+          id="tipsButton"
+          value="Підказка"
+          class="inputAnswerButton tipsButton"
+        />
+                <input
+          type="button"
+          id="passButton"
+          value="Пропустити"
+          class="inputAnswerButton passButton"
+        />
+      </form>
+      </form>
+      <form class="displayNone" id="outputTips">
+        <div class="form_radio_btn">
+          <input id="inputTip1" type="radio" name="tip" checked />
+          <label for="inputTip1" id="tip1"></label>
+        </div>
+
+        <div class="form_radio_btn">
+          <input id="inputTip2" type="radio" name="tip" />
+          <label for="inputTip2" id="tip2"></label>
+        </div>
+
+        <div class="form_radio_btn">
+          <input id="inputTip3" type="radio" name="tip" />
+          <label for="inputTip3" id="tip3"></label>
+        </div>
+        <br />
+        <input
+          type="button"
+          class="inputAnswerButton"
+          id="answerTipButton"
+          value="Відповісти"
+        />
+      </form>
+      <div id="notifBlock"></div>
+      <div id="timeBlock"></div>
+      <div class="inputName" id="inputNames">
+        <form>
+          <span>Enter the names of the players:</span><br>
+          <label for="nameOne">Player 1:<input  class="inputAnswer" type="text" name="name" id="nameOne" ></label>
+          <br>
+          <label for="nameTwo">Player 2:<input  class="inputAnswer" type="text" name="name" id="nameTwo" ></label>
+          <br>
+                  <input
+          type="button"
+          id="namesButton"
+          value="Enter names"
+          class="inputAnswerButton"
+        />
+        </form>
+      </div>
+      <div id="startBlock" class="start-area">        <input
+          type="button"
+          id="startButton"
+          value="Start Game"
+          class="inputAnswerButton"
+        /></div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
