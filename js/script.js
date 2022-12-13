@@ -102,6 +102,28 @@ const gameProcess = {
             .getElementById("outputTips")
             .setAttribute("class", "displayNone");
     },
+    checkingAnswerCorrect: function (playerAnswer) {
+        playerAnswer =
+            playerAnswer.charAt(0).toUpperCase() + playerAnswer.slice(1);
+
+        const checkingSpaces = playerAnswer.split("").every((element) => {
+            if (element !== " ") {
+                return true;
+            } else {
+                alert("Відповідь має бути словом! Введіть одне слово!");
+                return false;
+            }
+        });
+        if (!checkingSpaces) {
+            return false;
+        }
+        if (!/[a-zA-Z]/.test(playerAnswer)) {
+            alert("Відповідь має бути латинецею!");
+            return false;
+        }
+        return playerAnswer;
+    },
+
     answerCheck: function (playerAnswer) {
         if (playerAnswer) {
             if (this.processQuestin.answer === playerAnswer) {
@@ -234,23 +256,39 @@ function handleGameButtons(element) {
             .getElementById("inputNames")
             .setAttribute("style", "display:none");
     }
-    if (activeButtonId === "passButton") {
-        gameProcess.passQuestion();
-    }
     if (activeButtonId === "answerButton") {
         const answerInput = document.getElementById("answerInput");
-        if (gameProcess.answerCheck(answerInput.value)) {
+
+        if (!answerInput.value) {
+            alert("Ви не ввели відповідь!");
+            return false;
+        }
+
+        const playerAnswer = gameProcess.checkingAnswerCorrect(
+            answerInput.value
+        );
+
+        if (!playerAnswer) {
+            answerInput.value = "";
+            return false;
+        }
+
+        if (gameProcess.answerCheck(playerAnswer)) {
             gameControler.playerGuessedQuestion();
             gameProcess.startRound();
         } else {
             gameControler.gamePlayerSwitch();
         }
         gameProcess.startRound();
-
         answerInput.value = "";
+    }
+    if (activeButtonId === "passButton") {
+        gameProcess.passQuestion();
+        document.getElementById("answerInput").value = "";
     }
     if (activeButtonId === "answerTipButton") {
         gameProcess.answerTipCheck();
+        document.getElementById("answerInput").value = "";
     }
     if (activeButtonId === "tipsButton") {
         gameProcess.removeInputQuestion();
