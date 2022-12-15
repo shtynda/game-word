@@ -17,26 +17,26 @@
           <span id="playerTwoScore">0</span>
         </div>
       </div>
-      <span id="question" class="questionText">The capital of Italy?</span>
+      <span id="question" class="questionText"></span>
       <form id="outputQuestion">
         <input type="text" class="inputAnswer" id="answerInput" />
         <input
           type="button"
           id="answerButton"
           value="Відповісти"
-          class="inputAnswerButton"
+          class="inputAnswerButton buttonClick"
         />
                         <input
           type="button"
           id="tipsButton"
           value="Підказка"
-          class="inputAnswerButton tipsButton"
+          class="inputAnswerButton buttonClick tipsButton"
         />
                 <input
           type="button"
           id="passButton"
           value="Пропустити"
-          class="inputAnswerButton passButton"
+          class="inputAnswerButton buttonClick passButton"
         />
       </form>
       </form>
@@ -58,34 +58,69 @@
         <br />
         <input
           type="button"
-          class="inputAnswerButton"
+          class="inputAnswerButton buttonClick"
           id="answerTipButton"
           value="Відповісти"
         />
       </form>
       <div id="notifBlock"></div>
       <div id="timeBlock"></div>
-      <!-- <div class="inputName" id="inputNames">
+      <div class="inputName" id="inputNames">
         <form>
-          <span>Enter the names of the players:</span><br>
-          <label for="nameOne">Player 1:<input  class="inputAnswer" type="text" name="name" id="nameOne" ></label>
+          <span>Введіть імена гравців:</span><br>
+          <label for="nameOne">Гравець 1:<input  class="inputAnswer" type="text" name="name" id="nameOne" ></label>
           <br>
-          <label for="nameTwo">Player 2:<input  class="inputAnswer" type="text" name="name" id="nameTwo" ></label>
+          <label for="nameTwo">Гравець 2:<input  class="inputAnswer" type="text" name="name" id="nameTwo" ></label>
+          <br>
+           <label class = "labelScore" for="maxScore">До скількох гра(від 5 до 50): <input  class="maxScore" type="number" name="maxScore" max="50" min="5" id="maxScore"></label>
           <br>
                   <input
           type="button"
           id="namesButton"
-          value="Enter names"
-          class="inputAnswerButton"
+          value="Розпочати гру"
+          class="inputAnswerButton buttonClick"
         />
+
         </form>
-      </div> -->
-      <!-- <div id="startBlock" class="start-area">        <input
+        <div class="rules buttonClick"><span id="rulesButton">Правила гри</span></div>
+        <div class="rules-block" id="rulesBlock" style="display: none">
+          <p>За правильну відповідь на питання +3 бали</p>
+          <p>Правильна відповідь з підказкою +2 бали</p>
+          <p>За пропуск питання +1 бал і перехід ходу до іншого гравця</p>
+          <p>Неправильна відповідь 0 і перехід ходу</p>
+          <p>Гра триває до введеного числи від 5 до 50. Хто перший набере введену кількість балів, той переміг</p>
+          <p>Після отримання підказок, пропустити питання неможливо</p>
+        </div>
+      </div>
+      <div id="startBlock" class="start-area">        <input
           type="button"
           id="startButton"
-          value="Start Game"
-          class="inputAnswerButton"
-        /></div> -->
+          value="Почати гру"
+          class="inputAnswerButton buttonClick"
+        /></div>
+
+        <div class="game-over" id="game-over-block">
+          <div class="game-winner"><span>Переможець -</span> &nbsp;<span id="game-winner-name"></span></div>
+          <div class="game-result">
+            <div class="player-name player1-name"><span id="player1-name"></span></div>
+            <div class="result"><span id="player1-result"></span> <span> : </span> <span id="player2-result"></span></div>
+            <div class="player-name player2-name"><span id="player2-name"></span></div>
+          </div>
+          <div class="game-over-btns">
+                            <input
+          type="button"
+          id="restartButton"
+          value="Реванш"
+          class="inputAnswerButton buttonClick restartButton"
+        />
+                        <input
+          type="button"
+          id="endButton"
+          value="Покинути гру"
+          class="inputAnswerButton buttonClick endButton"
+        />
+          </div>
+        </div>
 
     <script src="js/script.js"></script>
   </body>

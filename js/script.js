@@ -19,29 +19,24 @@ const players = {
 
 const gameQuestions = [
     {
-        text: "The capital of Italy?",
-        answer: "Roma",
-        tips: ["Roma", "Berlin", "Warsawa"],
+        text: "Столиця Італії?",
+        answer: "Рим",
+        tips: ["Рим", "Берлін", "Мілан"],
     },
     {
-        text: "The capital of Germany?",
-        answer: "Berlin",
-        tips: ["Roma", "Berlin", "Warsawa"],
+        text: "Столиця Польщі?",
+        answer: "Варшава",
+        tips: ["Берлін", "Краків", "Варшава"],
     },
     {
-        text: "The capital of Poland?",
-        answer: "Warsawa",
-        tips: ["Roma", "Berlin", "Warsawa"],
+        text: "Столицею якої країни є Богота?",
+        answer: "Колумбії",
+        tips: ["Колумбії", "Мексики", "Болівії"],
     },
     {
-        text: "The capital of France?",
-        answer: "Paris",
-        tips: ["Roma", "Paris", "Warsawa"],
-    },
-    {
-        text: "The capital of Spain?",
-        answer: "Madrid",
-        tips: ["Roma", "Berlin", "Madrid"],
+        text: "Столиця Франції?",
+        answer: "Париж",
+        tips: ["Париж", "Рим", "Марсель"],
     },
 ];
 
@@ -60,7 +55,6 @@ const gameProcess = {
     },
     deleteQuestion: function () {
         this.questionForGame.splice(this.indexQuestin, 1);
-        console.log(this.questionForGame);
     },
     outputQuestion: function () {
         document
@@ -110,15 +104,15 @@ const gameProcess = {
             if (element !== " ") {
                 return true;
             } else {
-                alert("Відповідь має бути словом! Введіть одне слово!");
+                alert("Відповідь має бути одним словом!");
                 return false;
             }
         });
         if (!checkingSpaces) {
             return false;
         }
-        if (!/[a-zA-Z]/.test(playerAnswer)) {
-            alert("Відповідь має бути латинецею!");
+        if (!/[а-яА-Я]/.test(playerAnswer)) {
+            alert("Відповідь має бути українською!");
             return false;
         }
         return playerAnswer;
@@ -171,7 +165,7 @@ const gameProcess = {
 };
 
 const gameControler = {
-    maxScore: 10,
+    maxScore: 5,
     gamePlayer: players.players[0],
     gamePlayerSwitch: function () {
         const i = players.players[0];
@@ -227,22 +221,47 @@ const gameControler = {
         }, 3000);
     },
     checkWinner: function () {
-        if (this.gamePlayer.score >= 10) {
+        if (this.gamePlayer.score >= this.maxScore) {
+            this.gameOver();
         }
+    },
+    gameOver: function () {
+        document.getElementById("player1-name").innerHTML =
+            players.players[0].name;
+        document.getElementById("player1-result").innerHTML =
+            players.players[0].score;
+        document.getElementById("player2-name").innerHTML =
+            players.players[1].name;
+        document.getElementById("player2-result").innerHTML =
+            players.players[1].score;
+        if (players.players[0].score > players.players[1].score) {
+            document.getElementById("game-winner-name").innerHTML =
+                players.players[0].name;
+        } else {
+            document.getElementById("game-winner-name").innerHTML =
+                players.players[1].name;
+        }
+        document.getElementById("game-over-block").style.display = "flex";
     },
 };
 
 function handleGameButtons(element) {
     const activeButtonId = element.target.id;
     if (activeButtonId === "startButton") {
-        document
-            .getElementById("startBlock")
-            .setAttribute("style", "display:none");
+        document.getElementById("startBlock").style.display = "none";
     }
     if (activeButtonId === "namesButton") {
         players.players[0].name = document.getElementById("nameOne").value;
         players.players[1].name = document.getElementById("nameTwo").value;
-        console.log(players.players[1].name);
+        gameControler.maxScore = document.getElementById("maxScore").value;
+
+        if (
+            !document.getElementById("nameOne").value ||
+            !document.getElementById("nameTwo").value
+        ) {
+            alert("Ви не ввели імена гравців");
+            return false;
+        }
         if (
             document.getElementById("nameOne").value ===
             document.getElementById("nameTwo").value
@@ -252,9 +271,17 @@ function handleGameButtons(element) {
             document.getElementById("nameTwo").value = "";
             return false;
         }
-        document
-            .getElementById("inputNames")
-            .setAttribute("style", "display:none");
+        if (
+            document.getElementById("maxScore").value > 50 ||
+            document.getElementById("maxScore").value < 5
+        ) {
+            document.getElementById("maxScore").value = "";
+            alert("Введіть число від 5 до 50");
+            return false;
+        }
+        document.getElementById("inputNames").style.display = "none";
+        players.outputPlayersName();
+        gameProcess.startRound();
     }
     if (activeButtonId === "answerButton") {
         const answerInput = document.getElementById("answerInput");
@@ -294,13 +321,28 @@ function handleGameButtons(element) {
         gameProcess.removeInputQuestion();
         gameProcess.outputTips();
     }
+    if (activeButtonId === "endButton") {
+        document.location.reload();
+    }
+    if (activeButtonId === "restartButton") {
+        players.players[0].score = 0;
+        players.players[1].score = 0;
+        document.getElementById("game-over-block").style.display = "none";
+        players.outputPlayersName();
+        players.outputPlayersScore();
+        gameProcess.startRound();
+    }
+    if (activeButtonId === "rulesButton") {
+        if (document.getElementById("rulesBlock").style.display == "none") {
+            document.getElementById("rulesBlock").style.display = "block";
+        } else {
+            document.getElementById("rulesBlock").style.display = "none";
+        }
+    }
 }
 
-players.outputPlayersName();
-gameProcess.startRound();
-
 window.onload = function () {
-    const gameButton = document.getElementsByClassName("inputAnswerButton");
+    const gameButton = document.getElementsByClassName("buttonClick");
     for (let i = 0; i < gameButton.length; i++) {
         gameButton[i].onclick = handleGameButtons;
     }
